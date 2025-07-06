@@ -23,23 +23,25 @@ A web platform that enables citizens across India to anonymously report infrastr
 ## 🌟 Use Cases
 
 ### For Citizens
+
 - Report potholes, streetlight issues, water leaks instantly
 - Track report status from submission to resolution
 - Share issues with community via social media
 - No registration required - completely anonymous
 
 ### For Authorities
+
 - Real-time visibility into citizen complaints
 - Geographic clustering to identify problem areas
 - Automated social media notifications
 - Transparent status tracking and accountability
 
 ### For Civic Organizations
+
 - Data-driven advocacy with issue statistics
 - Evidence collection through photos and GPS
 - Community engagement through shared reporting
 - Government response monitoring
-
 
 ## 📋 Quick Start
 
@@ -102,6 +104,7 @@ Our comprehensive documentation covers all aspects of the project:
 ### Environment Setup
 
 1. **Database Configuration**
+
    ```bash
    # Create database and user
    sudo -u postgres psql
@@ -111,6 +114,7 @@ Our comprehensive documentation covers all aspects of the project:
    ```
 
 2. **Environment Variables**
+
    ```bash
    # Edit .env file with your configurations
    DATABASE_URL=postgres://help_govern_user:password@localhost/help_govern
@@ -121,6 +125,7 @@ Our comprehensive documentation covers all aspects of the project:
    ```
 
 3. **Run Development Server**
+
    ```bash
    # Backend
    go run cmd/server/main.go
@@ -146,11 +151,13 @@ Follow [TASKS.md](TASKS.md) and [feature-specifications.md](docs/feature-specifi
 We welcome contributions! Here's how to get started:
 
 1. **Fork the Repository**
+
    ```bash
    git fork https://github.com/projects-for-public/help-govern.git
    ```
 
 2. **Create Feature Branch**
+
    ```bash
    git checkout -b feature/amazing-feature
    ```
