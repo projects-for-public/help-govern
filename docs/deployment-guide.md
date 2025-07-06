@@ -26,13 +26,13 @@ sudo apt-get install -y nodejs
 ```bash
 # Create database and user
 sudo -u postgres psql
-CREATE DATABASE civic_reports;
-CREATE USER civic_user WITH PASSWORD 'your_password';
-GRANT ALL PRIVILEGES ON DATABASE civic_reports TO civic_user;
+CREATE DATABASE help_govern;
+CREATE USER help_govern_user WITH PASSWORD 'your_password';
+GRANT ALL PRIVILEGES ON DATABASE help_govern TO help_govern_user;
 \q
 
 # Run migrations
-cd civic-report
+cd help-govern
 go run cmd/migrate/main.go
 ```
 
@@ -43,7 +43,7 @@ go run cmd/migrate/main.go
 cp .env.example .env
 
 # Edit .env with your values
-DATABASE_URL=postgres://civic_user:your_password@localhost/civic_reports
+DATABASE_URL=postgres://help_govern_user:your_password@localhost/help_govern
 CLOUDINARY_URL=cloudinary://api_key:api_secret@cloud_name
 GOOGLE_VISION_API_KEY=your_google_vision_key
 TWITTER_BEARER_TOKEN=your_twitter_bearer_token
@@ -134,7 +134,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - DATABASE_URL=postgres://civic_user:password@db:5432/civic_reports
+      - DATABASE_URL=postgres://help_govern_user:password@db:5432/help_govern
       - CLOUDINARY_URL=${CLOUDINARY_URL}
       - GOOGLE_VISION_API_KEY=${GOOGLE_VISION_API_KEY}
       - TWITTER_BEARER_TOKEN=${TWITTER_BEARER_TOKEN}
@@ -146,8 +146,8 @@ services:
   db:
     image: postgres:15-alpine
     environment:
-      - POSTGRES_DB=civic_reports
-      - POSTGRES_USER=civic_user
+      - POSTGRES_DB=help_govern
+      - POSTGRES_USER=help_govern_user
       - POSTGRES_PASSWORD=password
     volumes:
       - postgres_data:/var/lib/postgresql/data
@@ -197,38 +197,38 @@ sudo apt install -y git nginx postgresql postgresql-contrib certbot python3-cert
 
 # Create application user
 sudo adduser --system --group civic
-sudo mkdir -p /var/www/civic-report
-sudo chown civic:civic /var/www/civic-report
+sudo mkdir -p /var/www/help-govern
+sudo chown civic:civic /var/www/help-govern
 ```
 
 ### Application Deployment
 
 ```bash
 # Clone repository
-sudo -u civic git clone https://github.com/yourusername/civic-report.git /var/www/civic-report
-cd /var/www/civic-report
+sudo -u civic git clone https://github.com/projects-for-prople/help-govern.git /var/www/help-govern
+cd /var/www/help-govern
 
 # Build application
-sudo -u civic go build -o civic-server cmd/server/main.go
+sudo -u civic go build -o help-govern-server cmd/server/main.go
 
 # Create systemd service
-sudo nano /etc/systemd/system/civic-report.service
+sudo nano /etc/systemd/system/help-govern.service
 ```
 
 ```ini
 [Unit]
-Description=Civic Report Server
+Description=Help Govern Server
 After=network.target
 
 [Service]
 Type=simple
 User=civic
 Group=civic
-WorkingDirectory=/var/www/civic-report
-ExecStart=/var/www/civic-report/civic-server
+WorkingDirectory=/var/www/help-govern
+ExecStart=/var/www/help-govern/help-govern-server
 Restart=always
 RestartSec=5
-Environment=DATABASE_URL=postgres://civic_user:password@localhost/civic_reports
+Environment=DATABASE_URL=postgres://help_govern_user:password@localhost/help_govern
 Environment=PORT=8080
 
 [Install]
@@ -237,15 +237,15 @@ WantedBy=multi-user.target
 
 ```bash
 # Enable and start service
-sudo systemctl enable civic-report
-sudo systemctl start civic-report
-sudo systemctl status civic-report
+sudo systemctl enable help-govern
+sudo systemctl start help-govern
+sudo systemctl status help-govern
 ```
 
 ### Nginx Configuration
 
 ```nginx
-# /etc/nginx/sites-available/civic-report
+# /etc/nginx/sites-available/help-govern
 server {
     listen 80;
     server_name yourdomain.com www.yourdomain.com;
@@ -268,7 +268,7 @@ server {
 
     # Static files
     location /static/ {
-        alias /var/www/civic-report/web/static/;
+        alias /var/www/help-govern/web/static/;
         expires 1y;
         add_header Cache-Control "public, immutable";
     }
@@ -329,7 +329,7 @@ echo "Migrations completed successfully!"
 # scripts/backup.sh
 set -e
 
-BACKUP_DIR="/var/backups/civic-report"
+BACKUP_DIR="/var/backups/help-govern"
 DATE=$(date +%Y%m%d_%H%M%S)
 
 # Create backup directory
@@ -354,10 +354,10 @@ echo "Backup completed: $BACKUP_DIR/database_$DATE.sql.gz"
 crontab -e
 
 # Daily backup at 2 AM
-0 2 * * * /var/www/civic-report/scripts/backup.sh
+0 2 * * * /var/www/help-govern/scripts/backup.sh
 
 # Weekly cleanup
-0 3 * * 0 /var/www/civic-report/scripts/cleanup.sh
+0 3 * * 0 /var/www/help-govern/scripts/cleanup.sh
 ```
 
 ## Monitoring and Logging
@@ -366,15 +366,15 @@ crontab -e
 
 ```bash
 # Create log directory
-sudo mkdir -p /var/log/civic-report
-sudo chown civic:civic /var/log/civic-report
+sudo mkdir -p /var/log/help-govern
+sudo chown civic:civic /var/log/help-govern
 
 # Configure log rotation
-sudo nano /etc/logrotate.d/civic-report
+sudo nano /etc/logrotate.d/help-govern
 ```
 
 ```
-/var/log/civic-report/*.log {
+/var/log/help-govern/*.log {
     daily
     missingok
     rotate 30
@@ -383,7 +383,7 @@ sudo nano /etc/logrotate.d/civic-report
     notifempty
     create 644 civic civic
     postrotate
-        systemctl reload civic-report
+        systemctl reload help-govern
     endscript
 }
 ```
@@ -444,19 +444,19 @@ add_header X-XSS-Protection "1; mode=block" always;
 set -e
 
 echo "Stopping application..."
-sudo systemctl stop civic-report
+sudo systemctl stop help-govern
 
 echo "Pulling latest code..."
 sudo -u civic git pull origin main
 
 echo "Building application..."
-sudo -u civic go build -o civic-server cmd/server/main.go
+sudo -u civic go build -o help-govern-server cmd/server/main.go
 
 echo "Running migrations..."
 ./scripts/migrate.sh
 
 echo "Starting application..."
-sudo systemctl start civic-report
+sudo systemctl start help-govern
 
 echo "Update completed!"
 ```
@@ -522,7 +522,7 @@ location /api/reports {
 
 ```bash
 # View application logs
-sudo journalctl -u civic-report -f
+sudo journalctl -u help-govern -f
 
 # View nginx logs
 sudo tail -f /var/log/nginx/access.log
