@@ -53,7 +53,7 @@ A web platform that enables citizens across India to anonymously report infrastr
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/civic-report.git
+git clone https://github.com/projects-for-public/help-govern.git
 cd civic-report
 
 # Copy environment variables
@@ -190,7 +190,7 @@ See the [Deployment Guide](docs/deployment-guide.md) for detailed instructions a
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the GPL 3.0 License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
@@ -201,10 +201,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/yourusername/civic-report/issues)
-- 💡 **Feature Requests**: [GitHub Discussions](https://github.com/yourusername/civic-report/discussions)
-- 📧 **Email**: contact@civic-report.org
-- 🐦 **Twitter**: [@CivicReportIndia](https://twitter.com/CivicReportIndia)
+- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/projects-for-public/help-govern/issues)
+- 💡 **Feature Requests**: [GitHub Discussions](https://github.com/projects-for-public/help-govern/discussions)
+<!-- - 📧 **Email**: contact@civic-report.org
+- 🐦 **Twitter**: [@CivicReportIndia](https://twitter.com/CivicReportIndia) -->
 
 ---
 
