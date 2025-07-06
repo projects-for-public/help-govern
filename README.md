@@ -54,7 +54,7 @@ A web platform that enables citizens across India to anonymously report infrastr
 ```bash
 # Clone the repository
 git clone https://github.com/projects-for-public/help-govern.git
-cd civic-report
+cd help-govern
 
 # Copy environment variables
 cp .env.example .env
@@ -63,7 +63,7 @@ cp .env.example .env
 go mod download
 
 # Setup database
-createdb civic_reports
+createdb help_govern
 go run cmd/migrate/main.go
 
 # Run the application
@@ -105,15 +105,15 @@ Our comprehensive documentation covers all aspects of the project:
    ```bash
    # Create database and user
    sudo -u postgres psql
-   CREATE DATABASE civic_reports;
-   CREATE USER civic_user WITH PASSWORD 'your_password';
-   GRANT ALL PRIVILEGES ON DATABASE civic_reports TO civic_user;
+   CREATE DATABASE help_govern;
+   CREATE USER help_govern_user WITH PASSWORD 'your_password';
+   GRANT ALL PRIVILEGES ON DATABASE help_govern TO help_govern_user;
    ```
 
 2. **Environment Variables**
    ```bash
    # Edit .env file with your configurations
-   DATABASE_URL=postgres://civic_user:password@localhost/civic_reports
+   DATABASE_URL=postgres://help_govern_user:password@localhost/help_govern
    CLOUDINARY_URL=cloudinary://api_key:api_secret@cloud_name
    GOOGLE_VISION_API_KEY=your_google_vision_key
    TWITTER_BEARER_TOKEN=your_twitter_bearer_token
@@ -147,7 +147,7 @@ We welcome contributions! Here's how to get started:
 
 1. **Fork the Repository**
    ```bash
-   git fork https://github.com/yourusername/civic-report.git
+   git fork https://github.com/projects-for-public/help-govern.git
    ```
 
 2. **Create Feature Branch**
