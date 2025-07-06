@@ -1,5 +1,6 @@
 package models
 
+// TODO: move to JSON model definition as in report.go
 type Image struct {
 	ID                 int     `db:"id" json:"id"`
 	ReportID           int     `db:"report_id" json:"report_id"`

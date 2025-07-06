@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 
-	"github.com/neerajkhandelwal/help-govern/internal/models"
+	"github.com/projects-for-public/help-govern/internal/models"
 	"gorm.io/gorm"
 )
 

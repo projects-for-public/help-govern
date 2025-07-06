@@ -1,5 +1,6 @@
 package models
 
+// TODO: move to JSON model definition as in report.go
 type StateAuthority struct {
 	ID            int     `db:"id" json:"id"`
 	State         string  `db:"state" json:"state"`

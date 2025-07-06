@@ -4,10 +4,10 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/neerajkhandelwal/help-govern/internal/config"
-	"github.com/neerajkhandelwal/help-govern/internal/handlers"
-	"github.com/neerajkhandelwal/help-govern/internal/services"
-	"github.com/neerajkhandelwal/help-govern/internal/utils"
+	"github.com/projects-for-public/help-govern/internal/config"
+	"github.com/projects-for-public/help-govern/internal/handlers"
+	"github.com/projects-for-public/help-govern/internal/services"
+	"github.com/projects-for-public/help-govern/internal/utils"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

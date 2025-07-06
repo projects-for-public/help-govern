@@ -1,5 +1,6 @@
 package models
 
+// TODO: move to JSON model definition as in report.go
 type User struct {
 	ID           int     `db:"id" json:"id"`
 	Username     string  `db:"username" json:"username"`

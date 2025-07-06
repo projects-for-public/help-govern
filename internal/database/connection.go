@@ -6,7 +6,7 @@ import (
 	"os"
 
 	_ "github.com/lib/pq"
-	"github.com/neerajkhandelwal/help-govern/internal/config"
+	"github.com/projects-for-public/help-govern/internal/config"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

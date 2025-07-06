@@ -5,9 +5,9 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"github.com/neerajkhandelwal/help-govern/internal/models"
-	"github.com/neerajkhandelwal/help-govern/internal/services"
-	"github.com/neerajkhandelwal/help-govern/internal/utils"
+	"github.com/projects-for-public/help-govern/internal/models"
+	"github.com/projects-for-public/help-govern/internal/services"
+	"github.com/projects-for-public/help-govern/internal/utils"
 )
 
 type ReportHandler struct {
@@ -23,7 +23,6 @@ func NewReportHandler(service *services.ReportService) *ReportHandler {
 // Validation tags are used for Gin binding
 // Category is validated against the DB in the handler
 // Images are ignored for now
-//
 type ReportCreateRequest struct {
 	Category    string  `json:"category" binding:"required"`
 	Latitude    float64 `json:"latitude" binding:"required"`
